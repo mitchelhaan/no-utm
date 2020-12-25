@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>No-UTM</title>
+</head>
+
+<style>
+    html:root {
+        --accent-color: #3140ab;
+        --main-width: 85%;
+    }
+
+    html[data-theme='light'] {
+        --background-color: #fff;
+        --alternate-background-colour: #f7f7f9;
+        --text-color: #121416d8;
+        --text-color-light: #777676bb;
+        --link-color: var(--accent-color);
+        --masthead-color: var(--accent-color);
+        --masthead-text: #fff;
+        --button-color: #263238;
+        --button-text: #fff;
+    }
+
+    html[data-theme='dark'] {
+        --background-color: #212a2e;
+        --alternate-background-colour: #263238;
+        --text-color: #F7F8F8;
+        --text-color-light: #8A8F98;
+        --link-color: #828fff;
+        --masthead-color: #212a2e;
+        --masthead-text: #fff;
+        --button-color: var(--accent-color);
+        --button-text: #fff;
+    }
+
+    * {
+        box-sizing: inherit;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    html {
+        font-size: 100%;
+        line-height: 2;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+        background: var(--background-color);
+        color: var(--text-color);
+        font-family: sans-serif;
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--link-color);
+    }
+
+    a:hover {
+        text-decoration: underline;
+        filter: brightness(80%);
+    }
+
+    button:not(:disabled) {
+        cursor: pointer;
+    }
+
+    header {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 9000;
+        padding: 1rem 5rem;
+        border-bottom: 1px solid hsla(0, 0%, 100%, .08);
+        background: var(--masthead-color);
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav .title {
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+    nav ul {
+        display: flex;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin-right: 20px;
+        list-style: none;
+    }
+
+    nav ul li:last-child {
+        margin-right: 0px;
+    }
+
+    nav a {
+        color: var(--masthead-text);
+        font-weight: 400;
+        filter: brightness(80%);
+        text-decoration: none;
+    }
+
+    nav a:hover {
+        filter: brightness(100%);
+        text-decoration: none;
+    }
+
+    nav button {
+        color: var(--masthead-text);
+        filter: brightness(80%);
+        padding: 5px;
+        background: transparent;
+        border: transparent;
+    }
+
+    nav button:hover {
+        filter: brightness(100%);
+    }
+
+    .d-none {
+        display: none !important;
+    }
+
+    [data-theme='light'] .d-block-light,
+    [data-theme='dark'] .d-block-dark {
+        display: block !important;
+    }
+
+    main {
+        width: var(--main-width);
+        margin: auto;
+        padding-top: 6vw;
+    }
+
+    #url {
+        padding: 0.5em;
+        margin: 2em 0;
+        width: 100%;
+    }
+
+    dl.inline-flex {
+        display: flex;
+        flex-flow: row;
+        flex-wrap: wrap;
+        width: 100%;
+        overflow: visible;
+    }
+
+    dl.inline-flex dt {
+        flex: 0 0 4em;
+        margin: auto;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    dl.inline-flex dd {
+        flex: 0 0 calc(100% - 4em);
+        margin: auto;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 4em;
+        font-size: 75%;
+        filter: brightness(80%);
+    }
+
+    footer p {
+        width: var(--main-width);
+        margin: auto;
+    }
+</style>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" class="title">No-UTM</a></li>
+                <li><a href="https://github.com/mitchelhaan/no-utm" target="_blank" rel="external noopener">Source</a>
+                </li>
+            </ul>
+            <button id="theme-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="d-block-light d-none">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="d-block-dark d-none">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+        </nav>
+    </header>
+    <main>
+        <h1>Urchin tracking module (UTM) parameter remover</h1>
+        <p>
+            <a href="https://en.wikipedia.org/wiki/UTM_parameters" target="_blank" rel="external noopener">UTM
+                parameters</a>
+            are used to identify the marketing campaign that refers traffic to a specific website.
+        </p>
+        <p>Pasting a link here will strip all UTM parameters, as well as various other tracking parameters. This all
+            happens in your browser; nothing leaves this page.</p>
+
+        <p>Why use this? Personally, I like sharing clean URLs with the minimum amount of information necessary.</p>
+
+        <input id="url" type="url" placeholder="Paste a link here" />
+
+        <dl class="inline-flex">
+            <dt>Before</dt>
+            <dd>
+                <code id="urlBefore"></code>
+            </dd>
+            <dt>After</dt>
+            <dd>
+                <code id="urlAfter"></code>
+            </dd>
+        </dl>
+    </main>
+    <footer>
+        <p>
+            Theme inspiration from
+            <a href="https://lukelowrey.com/css-variable-theme-switcher/" target="_blank" rel="external noopener">
+                Luke Lowrey
+            </a>
+        </p>
+    </footer>
+    <script>
+        let storedTheme = localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+        document.documentElement.setAttribute("data-theme", storedTheme)
+
+        let toggleElement = document.getElementById("theme-toggle")
+        toggleElement.addEventListener("click", function (event) {
+            let currentTheme = document.documentElement.getAttribute("data-theme")
+            let targetTheme = "light"
+
+            if (currentTheme === "light") {
+                targetTheme = "dark"
+            }
+
+            document.documentElement.setAttribute("data-theme", targetTheme)
+            localStorage.setItem("theme", targetTheme)
+        })
+
+
+        function sanitize(url) {
+            try {
+                let newUrl = new URL(url)
+
+                newUrl.searchParams.delete("utm_source")
+                newUrl.searchParams.delete("utm_medium")
+                newUrl.searchParams.delete("utm_campaign")
+                newUrl.searchParams.delete("utm_term")
+                newUrl.searchParams.delete("utm_content")
+                newUrl.searchParams.delete("gclid")
+                newUrl.searchParams.delete("gclsrc")
+                newUrl.searchParams.delete("dclid")
+                newUrl.searchParams.delete("fbclid")
+                newUrl.searchParams.delete("zanpid")
+
+                return newUrl.href
+            } catch (error) {
+                console.log(error)
+                return url
+            }
+        }
+
+        let urlEntryElement = document.getElementById("url")
+        let urlBeforeElement = document.getElementById("urlBefore")
+        let urlAfterElement = document.getElementById("urlAfter")
+
+        urlEntryElement.addEventListener("input", function (event) {
+            let before = event.target.value
+            if (before.length == 0) {
+                return
+            }
+            urlBeforeElement.innerText = before
+            urlAfterElement.innerText = sanitize(before)
+        })
+
+        urlEntryElement.value = "https://www.example.com/page?utm_content=buffercf3b2&utm_medium=social&utm_source=facebook.com&utm_campaign=buffer"
+        urlEntryElement.dispatchEvent(new Event("input"))
+    </script>
+</body>
+
+</html>
